@@ -1,12 +1,12 @@
-#ifndef KNIGHT_HPP
-#define KNIGHT_HPP
+#ifndef ROOK_HPP
+#define ROOK_HPP
 
 #include "Piece.hpp"
 #include "Board.hpp"
 
-class Knight : public Piece {
+class Rook : public Piece {
 public:
-    Knight(const char* pieceColor, int posX, int posY, Board* chessboard);
+    Rook(const char* pieceColor, int posX, int posY, Board* chessboard);
     bool move(int newX, int newY) override;
      virtual Piece* clone() const override;
 };
