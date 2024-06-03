@@ -1,14 +1,17 @@
 #include "Rook.hpp"
 #include "Board.hpp"
-#include <cstring>
+#include "Game.hpp"
+#include "cstring"
     
     Rook::Rook(const char* pieceColor, int posX, int posY,Board* chessboard) 
     : Piece("rook", pieceColor, posX, posY,chessboard){}
 
     Piece* Rook::clone() const {
     return new Rook(*this);
-}
-    
+    }
+    bool Rook::canMoveTo(int newX, int newY)  {
+    return (newX == positionX || newY == positionY);
+    }
     bool Rook::move(int newX, int newY) {
     // Проверка, дали новата позиция не е извън масата
     if (newX < 0 || newX >= 8 || newY < 0 || newY >= 8) {
@@ -29,6 +32,7 @@
             
             positionX = newX;
             positionY = newY;
+            board->setRookMoved(color, positionX, positionY);
             return true;
         }
         if (newX == positionX && newY != positionY) {       
@@ -40,15 +44,18 @@
             }
             positionX = newX;
             positionY = newY;
+            board->setRookMoved(color, positionX, positionY);
             return true;
         }
     }
      else {
         // Вземане на фигура на опонента
-        if (strcmp(board->getPieceAt(newX, newY)->getColor() , color)!=0) {
+        if (strcmp(board->getPieceAt(newX, newY)->getColor() ,color)!=0) {
             board->removePiece(newX, newY);
             positionX = newX;
             positionY = newY;
+            Game::moveCount = -1;
+            board->setRookMoved(color, positionX, positionY);
             return true;
         }
     }

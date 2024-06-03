@@ -23,7 +23,6 @@ Piece &Piece::operator=(const Piece &other){
         strcpy(color,other.color);
         positionX=other.positionX;
         positionY=other.positionY;
-
         board=other.board;
     }
     return *this;
@@ -37,4 +36,15 @@ const char* Piece::getColor() const {
 }
 const char* Piece::getType() const{
     return type;
+}
+
+void Piece::setPosition(int x, int y) {
+    positionX = x;
+    positionY = y;
+}
+int Piece::getPositionX() const{
+    return positionX;
+}
+int Piece::getPositionY() const{
+    return positionY;
 }

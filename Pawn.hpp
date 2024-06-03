@@ -8,7 +8,9 @@ class Pawn : public Piece {
 public:
     Pawn(const char* pieceColor, int posX, int posY, Board* chessboard);
     bool move(int newX, int newY) override;
+    bool canMoveTo(int x,int y) override;
      virtual Piece* clone() const override;
+    
 };
 
 #endif
